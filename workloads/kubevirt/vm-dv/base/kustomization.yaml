@@ -1,12 +1,15 @@
----
 resources:
-  - vm.yaml
-  - dv.yaml
-commonLabels:
-  appname: vm
+- vm.yaml
+- dv.yaml
 secretGenerator:
-  - name: my-public-key
-    files:
-      - test_rsa.pub
+- files:
+  - test_rsa.pub
+  name: my-public-key
 generatorOptions:
   disableNameSuffixHash: true
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+labels:
+- includeSelectors: true
+  pairs:
+    appname: vm
