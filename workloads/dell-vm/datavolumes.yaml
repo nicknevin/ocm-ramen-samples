@@ -2,10 +2,10 @@
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: DataVolume
 metadata:
-  name: hammerdb-rhel9-rootdisk
-  namespace: gitops-vms
+  name: nick-rhel9-rootdisk
+  namespace: nick
   labels:
-    app: hammerdb
+    app: nick
     drprotection: "true"
 spec:
   sourceRef:
@@ -23,10 +23,10 @@ spec:
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: DataVolume
 metadata:
-  name: hammerdb-rhel9-datadisk
-  namespace: gitops-vms
+  name: nick-rhel9-datadisk
+  namespace: nick
   labels:
-    app: hammerdb
+    app: nick
     drprotection: "true"
 spec:
   source:

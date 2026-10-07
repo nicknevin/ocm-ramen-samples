@@ -2,18 +2,18 @@
 apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
-  name: hammerdb-rhel9
-  namespace: gitops-vms
+  name: nick-rhel9
+  namespace: nick
   labels:
-    app: hammerdb
+    app: nick
     drprotection: "true"
 spec:
   runStrategy: Always
   template:
     metadata:
       labels:
-        kubevirt.io/domain: hammerdb-rhel9
-        app: hammerdb
+        kubevirt.io/domain: nick-rhel9
+        app: nick
     spec:
       domain:
         cpu:
@@ -42,11 +42,11 @@ spec:
       volumes:
         - name: rootdisk
           dataVolume:
-            name: hammerdb-rhel9-rootdisk
+            name: nick-rhel9-rootdisk
         - name: datadisk
           dataVolume:
-            name: hammerdb-rhel9-datadisk
+            name: nick-rhel9-datadisk
         - name: cloudinit
           cloudInitNoCloud:
             secretRef:
-              name: cloudinit-hammerdb
+              name: cloudinit-nick
