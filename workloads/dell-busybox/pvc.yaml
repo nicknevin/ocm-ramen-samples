@@ -11,5 +11,5 @@ spec:
   resources:
     requests:
       storage: 4Gi
-  storageClassName: powerstore-sc
+  storageClassName: rook-ceph-block
   volumeMode: Filesystem
