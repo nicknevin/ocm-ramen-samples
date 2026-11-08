@@ -13,12 +13,19 @@ spec:
         - |
           emit() {
               echo "$(date -uIs) $NODE_NAME $POD_UID $1" | tee -a /data/replication.txt
+              dd if=/dev/urandom of=/data2/out.bin count=5 bs=1M oflag=append conv=notrunc
               sync
           }
           trap "emit STOP; exit" TERM
           emit START
           while true; do
-              sleep 5 & wait
+              sleep 6 & wait
+              sz=$(stat -c %s /data2/out.bin)
+              sz_mb=$(expr $sz / 1048576)
+              echo "out.bin size $sz B ($sz_mb MB)"
+              if [[ $sz -ge 32212254720 ]]; then  # >= 32MB
+                  rm -f /data2/out.bin
+              fi
               emit UPDATE
           done
       env:
@@ -41,6 +48,8 @@ spec:
       volumeMounts:
         - mountPath: /data
           name: data
+        - mountPath: /data2
+          name: data2
   securityContext:
     runAsUser: 1000
     fsGroup: 1000
@@ -48,3 +57,6 @@ spec:
     - name: data
       persistentVolumeClaim:
         claimName: test-pvc
+    - name: data2
+      persistentVolumeClaim:
+        claimName: test-pvc-2
