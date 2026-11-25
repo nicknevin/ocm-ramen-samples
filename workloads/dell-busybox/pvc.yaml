@@ -12,7 +12,7 @@ spec:
   resources:
     requests:
       storage: 4Gi
-  storageClassName: powerstore-sc-group
+  storageClassName: powerstore-sc2-group
   volumeMode: Filesystem
 ---
 apiVersion: v1
@@ -28,5 +28,5 @@ spec:
   resources:
     requests:
       storage: 43Gi
-  storageClassName: powerstore-sc-group
+  storageClassName: powerstore-sc2-group
   volumeMode: Filesystem
